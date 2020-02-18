@@ -12,6 +12,8 @@ import com.innso.trainingapi.customerfile.CustomerFile;
 import com.innso.trainingapi.customerfile.CustomerFileRepository;
 import com.innso.trainingapi.interaction.Interaction;
 import com.innso.trainingapi.interaction.InteractionRepository;
+import com.innso.trainingapi.user.User;
+import com.innso.trainingapi.user.UserRepository;
 
 @Component
 public class InitData implements CommandLineRunner {
@@ -21,6 +23,9 @@ public class InitData implements CommandLineRunner {
 	
 	@Autowired
 	private InteractionRepository interactionRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
 	@Transactional
@@ -33,6 +38,10 @@ public class InitData implements CommandLineRunner {
 
 		customerFileRepository.findAll().forEach(System.out::println);
 		interactionRepository.findAll().forEach(System.out::println);
+		
+		userRepository.save(new User("Madelyne Blitch"));
+		
+		userRepository.findAll().forEach(System.out::println);
 	}
 	
 }
